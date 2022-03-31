@@ -1,4 +1,6 @@
 .vs/
+__pycache__/
+*.pyc
 
 # Prerequisites
 *.d

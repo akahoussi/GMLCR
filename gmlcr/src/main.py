@@ -2,7 +2,7 @@ import net
 
 print("Type help for a list of commands.")
 
-game = net.chess.game()
+game = net.algorithms.chess.game()
 
 while True:
 	move = input("Your move: ")
