@@ -21,19 +21,17 @@ class StackFrontier(): # dfs
 	def remove(self):
 		if self.empty():
 			raise Exception("empty frontier")
-		else:
-			node = self.frontier[0]
-			self.frontier = self.frontier[1:]
-			return node
+		node = self.frontier[0]
+		self.frontier = self.frontier[1:]
+		return node
 
 class QueueFrontier(StackFrontier): # bfs
 	def remove(self):
 		if self.empty():
 			raise Exception("empty frontier")
-		else:
-			node = self.frontier[-1]
-			self.frontier = self.frontier[:-1]
-			return node
+		node = self.frontier[-1]
+		self.frontier = self.frontier[:-1]
+		return node
 
 def dfs(board):
 	raise NotImplementedError
