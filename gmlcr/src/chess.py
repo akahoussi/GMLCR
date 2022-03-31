@@ -104,7 +104,6 @@ class game():
 				i += 1
 			# need to subtract 1 from the column because the board is indexed from 0
 			if self.turn == 'w':
-				# print("whites turn")
 				if self.board[column - 1 - 2][i] == 'P': # 2 spaces ahead
 					self.board[column - 1 - 2][i] = ' '
 					self.board[column - 1][i] = 'P'
@@ -113,7 +112,6 @@ class game():
 					self.board[column - 1 - 1][i] = ' '
 					self.board[column - 1][i] = 'P'
 			else:
-				# print("blacks turn")
 				if self.board[column - 1 + 2][i] == 'p':
 					self.board[column - 1 - 2][i] = ' '
 					self.board[column - 1][i] = 'p'
