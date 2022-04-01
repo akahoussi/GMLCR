@@ -18,6 +18,12 @@ class game():
 		}
 		self.halfmove = 0
 		self.fullmove = 1
+		self.curPgn = """
+[Event "GMLCR Game"] 
+[Site "GMLCR"] 
+[White "Player"]
+[Black "GMLCR"]
+		"""
 
 	def __str__(self):
 		board = self.reverseBoard()
@@ -88,14 +94,24 @@ class game():
 		locs = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
 		pieces = ['r', 'n', 'b', 'q', 'k']
 		i = 0
-		column = int(move[1])
-		if move[0].lower() in pieces:
+		if move[1] == 'x':
+			# remove the x
+			move = move[0:1] + move[2:]
+		column = int(move[1]) if not move[1] in locs else int(move[2])
+		if move[0].lower() in pieces and move[1].lower() in locs:
 			# non-pawn move
 			for char in locs:
 				if char == move[1]:
 					break
 				i += 1
-			pass
+			# move the piece
+			if self.turn == 'w':
+				if move[0] == 'K':
+					self.castling['w']['K'] = False
+					self.castling['w']['Q'] = False
+					# maybe implement a map for all the possible locations that a piece can move to
+			else:
+
 		else:
 			# pawn move
 			for char in locs:
@@ -119,9 +135,22 @@ class game():
 					# moved 1 square forward
 					self.board[column - 1 + 1][i] = ' '
 					self.board[column - 1][i] = 'p'
+		self.fullmove += 1 if self.turn == 'w' else 0
+		self.halfmove += 1
+		self.curPgn += (str(self.fullmove - 1) + '. ' + move + ' ') if self.turn == 'w' else move + ' '
 		self.turn = 'b' if self.turn == 'w' else 'w'
+
+	def getSquareColor(col, row):
+		cols = { 'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7 }
+		if (col + row) % 2 == 0:
+			return 'w'
+		else:
+			return 'b'
+
+	def pgn(self):
+		return self.curPgn
 
 def IUSEDTHISIMPORTSODEEPSOURCEWILLSTOPYELLINGATME():
 	return 0
 
-# awh yeah, coded in python with no libraries 😎
+# awh yeah, coded in pure python with no external libraries 😎

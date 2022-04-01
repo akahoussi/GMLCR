@@ -12,6 +12,8 @@ while True:
 		print(game.boardToFen())
 	elif move == "train":
 		net.train()
+	elif move == "pgn":
+		print(game.pgn())
 	elif move == "help":
 		print("""
 Welcome to kevlu8's GrandMaster-Level Chess Robot!
@@ -19,6 +21,7 @@ Here are a list of commands:
 	exit: exits the program
 	fen: prints the current board in fen notation
 	train: trains the neural network
+	pgn: prints the current game in pgn notation
 	help: prints this help message
 	otherwise, it's a move in algebraic notation (e.g. e4, Nf3, etc.)
 We trust that you are entering moves in the correct format, so there is no protection against invalid moves.
