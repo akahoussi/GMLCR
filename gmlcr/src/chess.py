@@ -110,8 +110,6 @@ class game():
 					self.castling['w']['K'] = False
 					self.castling['w']['Q'] = False
 					# maybe implement a map for all the possible locations that a piece can move to
-			else:
-
 		else:
 			# pawn move
 			for char in locs:
